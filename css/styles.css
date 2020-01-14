@@ -2,8 +2,56 @@
 :root {
 
 }
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+.wrapper {
+    /*text-align: center;*/
+}
+
+.header-container {
+    background-color: lightblue;
+    display: flex;
+    padding: .5rem;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px black;
+}
+.title-photo, .header-text {
+    margin: .5rem;
+}
+.header-text {
+    font-size: 1rem;
+}
+
+.body-container {
+    background-color: #555;
+    display: flex;
+}
+.left-body-container {
+    width: 25vw;
+    background-color: #555;
+}
+.right-body-container {
+    width: 25vw;
+    background-color: #555;
+}
+.left-body-container h1 {
+    /*text-orientation: upright;*/
+}
+
+
+#title-photo {
+    border: .2rem solid black;
+    border-radius: 4rem;
+    height: auto;
+    max-width: 100%;
+}
+#buddha-photo {
+    height: 100%;
+    max-width: 50vw;
 }
