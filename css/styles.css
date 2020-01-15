@@ -1,3 +1,6 @@
+html {
+    font-size: 100%;
+}
 
 :root {
 
@@ -7,6 +10,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+body {
+    font-size: .8rem;
 }
 
 .wrapper {
@@ -19,6 +25,8 @@
     padding: .5rem;
     justify-content: center;
     align-items: center;
+    border-bottom-left-radius: 4rem;
+    border-bottom-right-radius: 4rem;
     box-shadow: 0 0 10px black;
 }
 .title-photo, .header-text {
@@ -27,23 +35,81 @@
 .header-text {
     font-size: 1rem;
 }
-
 .body-container {
-    background-color: #555;
+    /*background-color: #555;*/
     display: flex;
+    margin-top: 1rem;;
 }
 .left-body-container {
-    width: 25vw;
+    width: 10vw;
     background-color: #555;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    border-top-right-radius: 4rem;
+    border-bottom-right-radius: 4rem;
+    border: .1rem solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px black;
 }
 .right-body-container {
-    width: 25vw;
+    width: 10vw;
     background-color: #555;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    border: .1rem solid black;
+    border-top-left-radius: 4rem;
+    border-bottom-left-radius: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px black;
 }
-.left-body-container h1 {
-    /*text-orientation: upright;*/
+.center-body-container {
+    display: flex;
+    justify-content: center;
+    margin: auto;
 }
-
+.left-menu-container {
+    position: absolute;
+    top: 20%;
+    left: 0;
+    width: 100%;
+    background-color: #555;
+    border-top-right-radius: 4rem;
+    border-bottom-right-radius: 4rem;
+    border: .1rem solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 0 10px black;
+    padding: 1.5rem 1.5rem 1.5rem 0;
+}
+.left-menu-container h1 {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+}
+.nav-links-left {
+    list-style: none;
+}
+.nav-item-left {
+    margin: 1rem 0;
+    padding: 1rem 5rem 1rem 1rem;
+    font-size: 1rem;
+/*    border-top-right-radius: 4rem;
+    border-bottom-right-radius: 4rem;*/
+}
+.family-links {
+    display: flex;
+    list-style: none;
+}
+.family-link-item {
+    margin: .8rem;
+}
+/*.nav-item-left:hover {
+    background-color: lightblue;
+}*/
 
 #title-photo {
     border: .2rem solid black;
@@ -53,5 +119,7 @@
 }
 #buddha-photo {
     height: 100%;
-    max-width: 50vw;
+    max-width: 90%;
+    border-radius: 4rem;
+    box-shadow: 0 0 10px black;
 }
