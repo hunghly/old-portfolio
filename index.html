@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Hello There!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
@@ -19,37 +20,84 @@
 <!--            <h1>Personal</h1>-->
 <!--        </div>-->
         <div class="center-body-container">
-            <img src="./img/buddha-photo.jpg" alt="photos" id="buddha-photo">
+            <img src="./img/buddha-photo.jpg" alt="photos" id="photo-slideshow">
         </div>
 <!--        <div class="right-body-container">-->
 <!--            <h1>Professional</h1>-->
 <!--        </div>-->
     </div>
-    <div class="left-menu-container">
+
+
+    <div class="left-menu-container left-menu-container-close">
         <ul class="nav-links-left">
-            <li class="nav-item-left">Life
+            <li class="nav-item-left">
+                <h3>Life</h3>
                 <ul class="family-links">
-                    <li class="family-link-item">Family</li>
-                    <li class="family-link-item">Pets</li>
-                    <li class="family-link-item">Goals</li>
+                    <li class="family-link-item link-item">Family</li>
+                    <li class="family-link-item link-item">Pets</li>
+                    <li class="family-link-item link-item">Goals</li>
                 </ul>
             </li>
-            <li class="nav-item-left">Military
+            <li class="nav-item-left">
+                <h3>Military</h3>
                 <ul class="military-links">
-                    <li class="military-link-item">Career</li>
-                    <li class="military-link-item">Duties</li>
-                    <li class="military-link-item">Awards</li>
+                    <li class="military-link-item link-item">Career</li>
+                    <li class="military-link-item link-item">Duties</li>
+                    <li class="military-link-item link-item">Awards</li>
                 </ul>
             </li>
-            <li class="nav-item-left">Volunteer
+            <li class="nav-item-left">
+                <h3>Volunteerism</h3>
                 <ul class="volunteer-links">
-                    <li class="volunteer-link-item">Yokota Football Coach</li>
-                    <li class="volunteer-link-item">Big Brother Big Sister</li>
-                    <li class="volunteer-link-item">AFSA Coordinator</li>
+                    <li class="volunteer-link-item link-item">Youth Football Coach</li>
+                    <li class="volunteer-link-item link-item">BBBS San Antonio</li>
+                    <li class="volunteer-link-item link-item">AFSA</li>
                 </ul>
             </li>
         </ul>
-        <h1>Personal</h1>
+        <h1 id="left-menu-header">
+            <i class="fas fa-chevron-circle-right left-arrow"></i>
+            PERSONAL
+            <i class="fas fa-chevron-circle-right left-arrow"></i>
+        </h1>
+    </div>
+
+    <div class="right-menu-container right-menu-container-open">
+        <h1 id="right-menu-header">
+            <i class="fas fa-chevron-circle-left right-arrow"></i>
+            PROFESSIONAL
+            <i class="fas fa-chevron-circle-left right-arrow"></i>
+        </h1>
+        <ul class="nav-links-right">
+            <li class="nav-item-right">
+                <h3>Education</h3>
+                <ul class="family-links">
+                    <li class="family-link-item link-item">Family</li>
+                    <li class="family-link-item link-item">Pets</li>
+                    <li class="family-link-item link-item">Goals</li>
+                </ul>
+            </li>
+            <li class="nav-item-right">
+                <h3>Work Experience</h3>
+                <ul class="military-links">
+                    <li class="military-link-item link-item">Career</li>
+                    <li class="military-link-item link-item">Duties</li>
+                    <li class="military-link-item link-item">Awards</li>
+                </ul>
+            </li>
+            <li class="nav-item-right">
+                <h3>Projects</h3>
+                <ul class="volunteer-links">
+                    <li class="volunteer-link-item link-item">Youth Football Coach</li>
+                    <li class="volunteer-link-item link-item">BBBS San Antonio</li>
+                    <li class="volunteer-link-item link-item">AFSA</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="footer-container">
+
     </div>
 </div>
 <script src="./js/jquery-2.2.4.js"></script>
