@@ -2,9 +2,10 @@
 
 :root {
     --main-theme-color: lightblue;
-    --pacifico-font: 'Pacifico', cursive ;
+    --pacifico-font: 'Pacifico', cursive;
     --caveat-font: 'Caveat', cursive;
 }
+
 html {
     font-size: 100%;
 }
@@ -14,20 +15,26 @@ html {
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
     font-size: .8rem;
     background-color: #BBB;
 }
 
+.no-scroll {
+    overflow-x: hidden;
+}
+
 .wrapper {
     /*text-align: center;*/
     display: grid;
-    grid-template: 20% 70% 10% / repeat(3, 1fr);
+    grid-template: 20% 70% 10% / 15% 70% 15%;
     grid-template-areas:
-            "header-area header-area header-area"
-            "body-area body-area body-area"
-            "footer-area footer-area footer-area";
-    grid-gap: .5rem;
+                "header-area header-area header-area"
+                "body-area-left body-area body-area-right"
+                "footer-area footer-area footer-area";
+    column-gap: 0;
+    row-gap: .5rem;
 }
 
 .header-container {
@@ -42,55 +49,27 @@ body {
     box-shadow: 0 0 10px black;
     font-family: var(--pacifico-font);
 }
+
 .title-photo, .header-text {
     margin: .5rem;
 }
+
 .header-text {
     font-size: 1rem;
 }
+
 .body-container {
     grid-area: body-area;
-    /*background-color: #555;*/
-    display: flex;
-    /*margin-top: 1rem;*/
-}
-.left-body-container {
-    width: 10vw;
-    background-color: #555;
-    writing-mode: vertical-rl;
-    text-orientation: upright;
-    border-top-right-radius: 4rem;
-    border-bottom-right-radius: 4rem;
-    border: .1rem solid black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 10px black;
-}
-.right-body-container {
-    width: 10vw;
-    background-color: #555;
-    writing-mode: vertical-rl;
-    text-orientation: upright;
-    border: .1rem solid black;
-    border-top-left-radius: 4rem;
-    border-bottom-left-radius: 4rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 10px black;
-}
-.center-body-container {
     display: flex;
     justify-content: center;
     margin: auto;
 }
+/*-----------Start of Left Menu Container----------------*/
 .left-menu-container {
-    grid-area: body-area;
+    grid-area: body-area-left;
     position: relative;
     height: min-content;
-    /*width: 70%;*/
-    width: 70%;
+    width: 55vw;
     background-color: var(--main-theme-color);
     border-top-right-radius: 4rem;
     border-bottom-right-radius: 4rem;
@@ -99,17 +78,20 @@ body {
     align-items: center;
     justify-content: space-between;
     box-shadow: 0 0 10px black;
-    padding: 1.5rem 1.5rem 1.5rem 0;
+    padding-right: 1.5rem;
     font-family: var(--caveat-font);
 }
+
 .left-menu-container-open {
-    left: -1%;
+    left: -1vw;
     transition: .5s all ease;
 }
+
 .left-menu-container-close {
-    left: -54%;
+    left: -40vw;
     transition: .5s all ease;
 }
+
 .left-menu-container h1 {
     writing-mode: vertical-rl;
     text-orientation: upright;
@@ -117,32 +99,32 @@ body {
     font-size: 1rem
     /*padding: 1.5rem;*/
 }
+
 .nav-links-left {
     list-style: none;
     padding-left: 1rem;
     width: max-content;
 }
-.nav-item-left {
+
+.nav-item-left, .nav-item-right {
     position: relative;
     top: 50%;
-    margin: 1rem 0;
+    margin: .5rem 0;
     font-size: 1rem;
     width: max-content;
     border-bottom: .1rem solid rgba(0, 0, 0, .3);
 }
-.nav-item-left h3 {
+
+.nav-item-left h3, .nav-item-right h3 {
     cursor: pointer;
 }
 
-/*---------------------------*/
+/*-----------Start of Right Menu Container----------------*/
 .right-menu-container {
-    grid-area: body-area;
+    grid-area: body-area-right;
     position: relative;
-    /*left: 31%;*/
-    right:71%;
-    /*left: 84%; right size for close*/
     height: min-content;
-    width: 70%;
+    width: 55vw;
     background-color: var(--main-theme-color);
     border-top-left-radius: 4rem;
     border-bottom-left-radius: 4rem;
@@ -151,57 +133,40 @@ body {
     align-items: center;
     justify-content: space-between;
     box-shadow: 0 0 10px black;
-    padding: 1.5rem 0 1.5rem 1.5rem;
+    padding-left: 1.5rem;
     font-family: var(--caveat-font);
 }
+
 .right-menu-container-open {
+    right: 39vw;
+    transition: .5s all ease;
+}
+
+.right-menu-container-close {
     right: 0;
     transition: .5s all ease;
 }
-.right-menu-container-close {
-    left: 84%;
-    transition: .5s all ease;
-}
+
 .right-menu-container h1 {
     writing-mode: vertical-rl;
     text-orientation: upright;
     cursor: pointer;
-    font-size: 1rem
-    /*padding: 1.5rem;*/
+    font-size: .9rem
 }
+
 .nav-links-right {
     list-style: none;
     padding-right: 1rem;
     width: max-content;
 }
-.nav-item-right {
-    position: relative;
-    top: 50%;
-    margin: 1rem 0;
-    font-size: 1rem;
-    width: max-content;
-    border-bottom: .1rem solid rgba(0, 0, 0, .3);
-}
-.nav-item-right h3 {
-    cursor: pointer;
-}
 
-/*------------------------*/
-
-
-
-
-
-
-
-
-
-.family-links, .military-links, .volunteer-links {
+.family-links, .military-links, .volunteer-links, .education-links, .work-links, .project-links {
     list-style: none;
     display: none;
 }
+
 .link-item {
-    margin: 1rem;
+    margin: .2rem;
     cursor: pointer;
     width: max-content;
 }
@@ -217,9 +182,10 @@ body {
     height: auto;
     max-width: 100%;
 }
+
 #photo-slideshow {
-    height: 100%;
-    max-width: 60%;
+    height: 27em;
+    width: 90%;
     border-radius: 4rem;
     box-shadow: 0 0 10px black;
 }
