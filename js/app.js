@@ -85,6 +85,6 @@
                 switchBottomArrow(this);
             });
         });
-        typeHeaderMessage("Hi, my name is Hung. Welcome to my personal site. Please checkout my links to learn more about me!");
+        typeHeaderMessage("Hi, my name is Hung. Welcome to my personal site. Please checkout my links to learn more about me! Currently this only looks good on mobile view :D!");
     });
 }

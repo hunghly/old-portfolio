@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Caveat|Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Domine|Open+Sans+Condensed:300&display=swap');
 
 :root {
-    --main-theme-color: lightblue;
+    --main-green-color: green;
     --pacifico-font: 'Pacifico', cursive;
     --caveat-font: 'Caveat', cursive;
+    --domine-font: 'Domine', serif;
+    --open-sans-condensed: 'Open Sans Condensed', sans-serif;
 }
 
 html {
@@ -18,8 +21,7 @@ html {
 
 body {
     font-size: .8rem;
-    background-color: #BBB;
-
+    background-color: rgba(0, 0, 0, .8);
 }
 
 .no-scroll {
@@ -38,16 +40,20 @@ body {
 
 .header-container {
     grid-area: header-area;
-    background-color: var(--main-theme-color);
+    background-color: white;
     display: flex;
     padding: .5rem;
     justify-content: center;
     align-items: center;
     border-bottom-left-radius: 4rem;
     border-bottom-right-radius: 4rem;
-    box-shadow: 0 0 10px black;
-    font-family: var(--pacifico-font);
+    border: .1rem solid #3333;
+    box-shadow: 0 0 10px #eee;
+    font-family: var(--open-sans-condensed);
     /*height: 20vh;*/
+    /*    border: .1rem solid #3333;
+    box-shadow: 0 0 10px #eee;
+    background-color: white;*/
 }
 
 .title-photo, .header-text {
@@ -62,16 +68,21 @@ body {
     grid-area: body-area;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    margin: 1.5rem 0;
+    margin: .5rem .5rem;
+    border: .2rem solid black;
+    border-radius: 4rem;
+    box-shadow: 0 0 10px black;
+    background-color: white;
+    /*background-color: red;*/
     /*height: 60vh;*/
 }
 .circle-container {
-    margin-top: .5rem;
+    /*margin-top: .5rem;*/
 }
 .fa-circle {
-    color: #fff;
+    color: #555;
     margin: .5rem;
 }
 /*-------------------End of Body Container----------------------*/
@@ -81,7 +92,6 @@ body {
     position: relative;
     height: 100%;
     width: 50vw;
-    background-color: var(--main-theme-color);
     border-top-right-radius: 4rem;
     border-bottom-right-radius: 4rem;
     border: .1rem solid black;
@@ -90,7 +100,9 @@ body {
     justify-content: space-between;
     box-shadow: 0 0 10px black;
     padding-right: .8rem;
-    font-family: var(--caveat-font);
+    background-color: green;
+    color: white;
+    font-family: var(--open-sans-condensed);
 }
 
 .left-menu-container-open {
@@ -118,7 +130,8 @@ body {
 }
 
 .left-arrow {
-    padding: .3rem 0 .3rem .3rem;
+    padding: .3rem 0 .3rem .1rem;
+    cursor: pointer;
 }
 
 .nav-links-left {
@@ -134,7 +147,6 @@ body {
     position: relative;
     height: 100%;
     width: 50vw;
-    background-color: var(--main-theme-color);
     border-top-left-radius: 4rem;
     border-bottom-left-radius: 4rem;
     border: .1rem solid black;
@@ -143,7 +155,9 @@ body {
     justify-content: space-between;
     box-shadow: 0 0 10px black;
     padding-left: .8rem;
-    font-family: var(--caveat-font);
+    background-color: darkblue;
+    color: white;
+    font-family: var(--open-sans-condensed);
 }
 
 .right-menu-container-open {
@@ -171,7 +185,8 @@ body {
 }
 
 .right-arrow {
-    padding: .3rem 0 .3rem .3rem;
+    padding: .3rem 0 .3rem .1rem;
+    cursor: pointer;
 }
 
 .nav-links-right {
@@ -192,7 +207,7 @@ body {
     margin: .5rem 0;
     font-size: 1rem;
     width: max-content;
-    border-bottom: .1rem solid rgba(0, 0, 0, .3);
+    border-bottom: .1rem solid rgba(255, 255, 255, .3);
 }
 
 .nav-item-left h3, .nav-item-right h3 {
@@ -210,7 +225,6 @@ body {
 .bottom-menu-container {
     grid-area: footer-area;
     position: relative;
-    background-color: var(--main-theme-color);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -218,12 +232,14 @@ body {
     padding: .5rem;
     border-top-left-radius: 4rem;
     border-top-right-radius: 4rem;
-    box-shadow: 0 0 10px black;
-    font-family: var(--caveat-font);
+    border: .1rem solid #3333;
+    box-shadow: 0 0 10px #eee;
+    background-color: white;
+    font-family: var(--open-sans-condensed);
 }
 
 .bottom-menu-container div {
-    margin: .2rem 0;
+    margin: .1rem 0;
 }
 
 .bottom-menu-header-container h1 {
@@ -233,19 +249,25 @@ body {
 
 .contact-container, .resume-container {
     font-size: 1rem;
+    cursor: pointer;
+}
+.social-media-container i {
+    margin: 0 .3rem;
+    font-size: 1rem;
+    cursor: pointer;
 }
 
 /*-------------------End of Bottom Menu Container----------------------*/
 #title-photo {
-    border: .2rem solid black;
-    border-radius: 4rem;
+
     height: 3rem;
     width: 3rem;
 }
 
 #photo-slideshow {
-    height: available;
+    max-height: 80%;
     width: 90%;
     border-radius: 4rem;
+    border: none;
     box-shadow: 0 0 10px black;
 }
