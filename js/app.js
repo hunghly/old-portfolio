@@ -3,6 +3,7 @@
     $(document).ready(() => {
         let leftMenuContainerEl = $('.left-menu-container');
         let rightMenuContainerEl = $('.right-menu-container');
+        let bottomMenuContainerEl = $('.bottom-menu-container');
 
         let switchLeftArrow = (element) => {
             if ($(element).hasClass('fa-chevron-circle-right')) {
@@ -24,10 +25,20 @@
             }
         };
 
+        let switchBottomArrow = (element) => {
+            if ($(element).hasClass('fa-chevron-circle-up')) {
+                $(element).removeClass('fa-chevron-circle-up');
+                $(element).addClass('fa-chevron-circle-down');
+            } else {
+                $(element).removeClass('fa-chevron-circle-down');
+                $(element).addClass('fa-chevron-circle-up');
+            }
+        };
+
         let resetLeftMenu = () => {
             $('.nav-item-left').children('ul').slideUp();
         };
-        let resetRighttMenu = () => {
+        let resetRightMenu = () => {
             $('.nav-item-right').children('ul').slideUp();
         };
 
@@ -51,7 +62,7 @@
             $(this).next().slideToggle();
         });
 
-        $('#left-menu-header-container').click(function () {
+        $('.left-menu-header-container').click(function () {
             $(leftMenuContainerEl).toggleClass('left-menu-container-open');
             $(leftMenuContainerEl).toggleClass('left-menu-container-close');
             resetLeftMenu();
@@ -59,15 +70,21 @@
                 switchLeftArrow(this);
             });
         });
-        $('#right-menu-header').click(function () {
+        $('.right-menu-header-container').click(function () {
             $(rightMenuContainerEl).toggleClass('right-menu-container-open');
             $(rightMenuContainerEl).toggleClass('right-menu-container-close');
-            resetRighttMenu();
+            resetRightMenu();
             $('.right-arrow').each(function () {
                 switchRightArrow(this);
             });
         });
-
+        $('.bottom-menu-header-container').click(function () {
+            $(bottomMenuContainerEl).toggleClass('bottom-menu-container-open');
+            $(bottomMenuContainerEl).toggleClass('bottom-menu-container-close');
+            $('.bottom-arrow').each(function () {
+                switchBottomArrow(this);
+            });
+        });
         typeHeaderMessage("Hi, my name is Hung. Welcome to my personal site. Please checkout my links to learn more about me!");
     });
 }

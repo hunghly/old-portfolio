@@ -19,6 +19,7 @@ html {
 body {
     font-size: .8rem;
     background-color: #BBB;
+
 }
 
 .no-scroll {
@@ -29,12 +30,10 @@ body {
     /*text-align: center;*/
     display: grid;
     grid-template: 20% 60% 20% / 15% 70% 15%;
-    grid-template-areas:
-                "header-area header-area header-area"
-                "body-area-left body-area body-area-right"
-                "footer-area footer-area footer-area";
+    grid-template-areas: "header-area header-area header-area" "body-area-left body-area body-area-right" "footer-area footer-area footer-area";
     column-gap: 0;
     row-gap: .5rem;
+    height: 100vh;
 }
 
 .header-container {
@@ -48,7 +47,7 @@ body {
     border-bottom-right-radius: 4rem;
     box-shadow: 0 0 10px black;
     font-family: var(--pacifico-font);
-    height: 20vh;
+    /*height: 20vh;*/
 }
 
 .title-photo, .header-text {
@@ -58,15 +57,25 @@ body {
 .header-text {
     font-size: 2.5vh;
 }
-
+/*-------------------Start of Body Container----------------------*/
 .body-container {
     grid-area: body-area;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     margin: 1.5rem 0;
-    height: 60vh;
+    /*height: 60vh;*/
 }
-/*-----------Start of Left Menu Container----------------*/
+.circle-container {
+    margin-top: .5rem;
+}
+.fa-circle {
+    color: #fff;
+    margin: .5rem;
+}
+/*-------------------End of Body Container----------------------*/
+/*-------------------Start of Left Menu Container----------------------*/
 .left-menu-container {
     grid-area: body-area-left;
     position: relative;
@@ -97,10 +106,8 @@ body {
 .left-menu-header-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    height: 100%;
-    width: 100%;
 }
 
 .left-menu-container h1 {
@@ -109,8 +116,9 @@ body {
     cursor: pointer;
     font-size: 1rem
 }
+
 .left-arrow {
-    padding-left: .3rem;
+    padding: .3rem 0 .3rem .3rem;
 }
 
 .nav-links-left {
@@ -119,20 +127,8 @@ body {
     width: max-content;
 }
 
-.nav-item-left, .nav-item-right {
-    position: relative;
-    top: 50%;
-    margin: .5rem 0;
-    font-size: 1rem;
-    width: max-content;
-    border-bottom: .1rem solid rgba(0, 0, 0, .3);
-}
-
-.nav-item-left h3, .nav-item-right h3 {
-    cursor: pointer;
-}
-
-/*-----------Start of Right Menu Container----------------*/
+/*-------------------End of Right Menu Container----------------------*/
+/*-------------------Start of Right Menu Container----------------------*/
 .right-menu-container {
     grid-area: body-area-right;
     position: relative;
@@ -163,10 +159,8 @@ body {
 .right-menu-header-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    height: 100%;
-    width: 100%;
 }
 
 .right-menu-container h1 {
@@ -177,7 +171,7 @@ body {
 }
 
 .right-arrow {
-    padding-left: .3rem;
+    padding: .3rem 0 .3rem .3rem;
 }
 
 .nav-links-right {
@@ -186,9 +180,23 @@ body {
     width: max-content;
 }
 
+/*-------------------End of Right Menu Container----------------------*/
 .family-links, .military-links, .volunteer-links, .education-links, .work-links, .project-links {
     list-style: none;
     display: none;
+}
+
+.nav-item-left, .nav-item-right {
+    position: relative;
+    top: 50%;
+    margin: .5rem 0;
+    font-size: 1rem;
+    width: max-content;
+    border-bottom: .1rem solid rgba(0, 0, 0, .3);
+}
+
+.nav-item-left h3, .nav-item-right h3 {
+    cursor: pointer;
 }
 
 .link-item {
@@ -198,20 +206,36 @@ body {
     font-size: smaller;
 }
 
-.footer-container {
+/*-------------------Start of Bottom Menu Container----------------------*/
+.bottom-menu-container {
     grid-area: footer-area;
+    position: relative;
     background-color: var(--main-theme-color);
     display: flex;
-    padding: .5rem;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    /*justify-content: center;*/
+    padding: .5rem;
     border-top-left-radius: 4rem;
     border-top-right-radius: 4rem;
     box-shadow: 0 0 10px black;
-    height: 20vh;
     font-family: var(--caveat-font);
 }
 
+.bottom-menu-container div {
+    margin: .2rem 0;
+}
+
+.bottom-menu-header-container h1 {
+    font-size: 1rem;
+    padding: 0 .2rem;
+}
+
+.contact-container, .resume-container {
+    font-size: 1rem;
+}
+
+/*-------------------End of Bottom Menu Container----------------------*/
 #title-photo {
     border: .2rem solid black;
     border-radius: 4rem;
