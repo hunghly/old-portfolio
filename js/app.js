@@ -62,11 +62,12 @@
         };
 
         let typeHeaderMessage = (heading) => {
+            $('.header-text').empty();
             let message = "";
             let index = 0;
             let intervalId = setInterval(() => {
                 message += heading.charAt(index);
-                $('.header-text').text(message);
+                $('.header-text').append(heading.charAt(index));
                 index++;
                 if (index === heading.length) {
                     clearInterval(intervalId);
