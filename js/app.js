@@ -55,24 +55,32 @@
             }, 50);
         };
 
+        let resetCircleColor = () => {
+            $('.fa-circle').each(function () {
+                $(this).css('color', 'var(--white-color)');
+            });
+        };
+
         $('.nav-item-left').children('h3').click(function () {
-            $(this).next().slideToggle();
+            $(this).next().slideToggle(200);
         });
         $('.nav-item-right').children('h3').click(function () {
-            $(this).next().slideToggle();
+            $(this).next().slideToggle(200);
         });
 
         $('.left-menu-header-container').click(function () {
-            $(leftMenuContainerEl).toggleClass('left-menu-container-open');
-            $(leftMenuContainerEl).toggleClass('left-menu-container-close');
+            if ($(leftMenuContainerEl).hasClass('left-menu-container-open')) $('.nav-links-left').fadeOut(1);
+            else $('.nav-links-left').fadeIn(1);
+            $(leftMenuContainerEl).toggleClass('left-menu-container-open left-menu-container-close');
             resetLeftMenu();
             $('.left-arrow').each(function () {
                 switchLeftArrow(this);
             });
         });
         $('.right-menu-header-container').click(function () {
-            $(rightMenuContainerEl).toggleClass('right-menu-container-open');
-            $(rightMenuContainerEl).toggleClass('right-menu-container-close');
+            if ($(rightMenuContainerEl).hasClass('right-menu-container-open')) $('.nav-links-right').fadeOut(1);
+            else $('.nav-links-right').fadeIn(1);
+            $(rightMenuContainerEl).toggleClass('right-menu-container-open right-menu-container-close');
             resetRightMenu();
             $('.right-arrow').each(function () {
                 switchRightArrow(this);
@@ -84,6 +92,23 @@
             $('.bottom-arrow').each(function () {
                 switchBottomArrow(this);
             });
+        });
+
+        let showPhotos = (photo) => {
+
+        };
+
+        let showPhoto1 = () => {
+            $('#slideshow-photo').attr('src', '');
+        };
+
+        $('.fa-circle').click(function () {
+            console.log($(this));
+            resetCircleColor();
+            $(this).css('color', 'var(--circle-color)');
+            if ($(this).attr('id') === 'slide-photo-1') {
+                showPhoto1();
+            }
         });
         typeHeaderMessage("Hi, my name is Hung. Welcome to my personal site. Please checkout my links to learn more about me! Currently this only looks good on mobile view :D!");
     });
