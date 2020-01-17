@@ -63,16 +63,15 @@
 
         let typeHeaderMessage = (heading) => {
             $('.header-text').empty();
-            let message = "";
-            let index = 0;
-            let intervalId = setInterval(() => {
-                message += heading.charAt(index);
-                $('.header-text').append(heading.charAt(index));
-                index++;
-                if (index === heading.length) {
-                    clearInterval(intervalId);
-                }
-            }, 50);
+            let ele = '<span>' + heading.split('').join('</span><span>') + '</span>';
+            $(ele).hide().appendTo('.header-text').each(function (i) {
+                $(this).delay(50 * i).css({
+                    display: 'inline',
+                    opacity: 0
+                }).animate({
+                    opacity: 1
+                }, 50);
+            });
         };
 
         let resetCircleColor = () => {
