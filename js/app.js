@@ -3,7 +3,26 @@
     $(document).ready(() => {
         let leftMenuContainerEl = $('.left-menu-container');
         let rightMenuContainerEl = $('.right-menu-container');
-        let bottomMenuContainerEl = $('.bottom-menu-container');
+        let currentPhotoIndex = 1;
+
+        let slideShowPhotos = [
+            {
+                description: 'a frontal photo of me in the military uniform.',
+                url: './img/senior-airman-cropped.jpg'
+            },
+            {
+                description: 'a photo of me at mt. fuji',
+                url: './img/mt-fuji.jpg'
+            },
+            {
+                description: 'a photo of us at the aquarium',
+                url: './img/aquarium.jpg'
+            },
+            {
+                description: 'a photo of me and a group of friends',
+                url: './img/the-guys.jpeg'
+            },
+        ];
 
         let switchLeftArrow = (element) => {
             if ($(element).hasClass('fa-chevron-circle-right')) {
@@ -57,7 +76,7 @@
 
         let resetCircleColor = () => {
             $('.fa-circle').each(function () {
-                $(this).css('color', 'var(--white-color)');
+                $(this).removeClass('active-circle');
             });
         };
 
@@ -86,30 +105,45 @@
                 switchRightArrow(this);
             });
         });
-        $('.bottom-menu-header-container').click(function () {
-            $(bottomMenuContainerEl).toggleClass('bottom-menu-container-open');
-            $(bottomMenuContainerEl).toggleClass('bottom-menu-container-close');
-            $('.bottom-arrow').each(function () {
-                switchBottomArrow(this);
-            });
-        });
 
-        let showPhotos = (photo) => {
-
-        };
-
-        let showPhoto1 = () => {
-            $('#slideshow-photo').attr('src', '');
+        let getPhotoIndex = (photo) => {
+            let id = $(photo).attr('id');
+            switch (id) {
+                case 'slide-photo-1':
+                    return 0;
+                case 'slide-photo-2':
+                    return 1;
+                case 'slide-photo-3':
+                    return 2;
+                case 'slide-photo-4':
+                    return 3;
+                default:
+                    return false;
+            }
         };
 
         $('.fa-circle').click(function () {
-            console.log($(this));
             resetCircleColor();
-            $(this).css('color', 'var(--circle-color)');
-            if ($(this).attr('id') === 'slide-photo-1') {
-                showPhoto1();
-            }
+            $(this).addClass('active-circle');
+            currentPhotoIndex = getPhotoIndex(this);
+            $('#slideshow-photo').attr('src', `${slideShowPhotos[currentPhotoIndex].url}`);
         });
+
+        let startSlideShow = () => {
+            let slideShowId = setInterval(() => {
+                resetCircleColor();
+                $(`#slide-photo-${currentPhotoIndex + 1}`).addClass('active-circle');
+                $('#slideshow-photo').attr('src', `${slideShowPhotos[currentPhotoIndex].url}`)
+                // $('#slideshow-photo').toggleClass('ball-in').delay(2000).toggleClass('ball-out');
+                if (currentPhotoIndex >= 3) {
+                    currentPhotoIndex = 0;
+                } else {
+                    currentPhotoIndex++;
+                }
+            }, 5000);
+        };
+
+        startSlideShow();
         typeHeaderMessage("Hi, my name is Hung. Welcome to my personal site. Please checkout my links to learn more about me! Currently this only looks good on mobile view :D!");
     });
 }
