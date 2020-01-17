@@ -66,7 +66,7 @@
             let index = 0;
             let intervalId = setInterval(() => {
                 message += heading.charAt(index);
-                $('.header-text').html(message);
+                $('.header-text').text(message);
                 index++;
                 if (index === heading.length) {
                     clearInterval(intervalId);
