@@ -113,6 +113,12 @@ body {
     }
 }
 
+.blurred {
+    filter: blur(.5em);
+    -webkit-filter: blur(.5em);
+}
+
+
 /*.circle-container {*/
 /*    padding-bottom: .5rem;*/
 /*}*/
@@ -319,9 +325,12 @@ body {
     height: 60.5vh;
     width: 100%;
     /*height: fit-content;*/
-    background-color: rgba(0, 0, 0, .9);
+    background-color: rgba(0, 0, 0, .6);
     border-radius: .5rem;
     /*display: none;*/
+}
+.modal-container-close {
+    display: none;
 }
 
 /*.modal {*/

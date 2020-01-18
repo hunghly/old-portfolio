@@ -1,40 +1,49 @@
 {
     "use strict";
     $(document).ready(() => {
-        let currentPhotoIndex = 1;
-        let flag;
+        let modalContainerEl = $('.modal-container');
+        let modalPhotoContainerEl = $('#modal-photo-container');
+        let slideShowPhotoEl = $('#slideshow-photo');
+        let modalPhotoEl = $('#modal-photo');
+        let modalShowId;
+        let currentPhotoIndex = 0;
+        let currentModalIndex = 0;
 
         let slideShowPhotos = [
             {
-                description: 'a frontal photo of me in the military uniform.',
-                url: './img/senior-airman-cropped.jpg'
+                alt: 'a frontal photo of me in the military uniform',
+                src: './img/senior-airman-cropped.jpg'
             },
             {
-                description: 'a photo of me at mt. fuji',
-                url: './img/mt-fuji.jpg'
+                alt: 'a photo of me at mt. fuji',
+                src: './img/mt-fuji.jpg'
             },
             {
-                description: 'a photo of us at the aquarium',
-                url: './img/aquarium.jpg'
+                alt: 'a photo of us at the aquarium',
+                src: './img/aquarium.jpg'
             },
             {
-                description: 'a photo of me and a group of friends',
-                url: './img/the-guys.jpeg'
+                alt: 'a photo of me and a group of friends',
+                src: './img/the-guys.jpeg'
             },
         ];
 
         let familyPhotos = [
             {
-                description: 'some baby photos',
-                url: './img/baby.jpg'
+                alt: 'some baby photos',
+                src: './img/baby.jpg'
             },
             {
-                description: 'a photo of me at mt. fuji',
-                url: './img/mt-fuji.jpg'
+                alt: 'a photo of young me playing games',
+                src: './img/gaming.jpg'
             },
             {
-                description: 'a photo of us at the aquarium',
-                url: './img/aquarium.jpg'
+                alt: 'a photo of us with ALS award',
+                src: './img/wife-award.jpg'
+            },
+            {
+                alt: 'a photo of us at the dinner table',
+                src: './img/family.jpg'
             }
         ];
 
@@ -54,19 +63,19 @@
         };
 
         let startSlideShow = () => {
+            $(slideShowPhotoEl).attr('src', `${slideShowPhotos[currentPhotoIndex].src}`);
+            $(slideShowPhotoEl).attr('alt', `${slideShowPhotos[currentPhotoIndex].alt}`);
+            currentPhotoIndex++;
             let slideShowId = setInterval(() => {
                 resetBodyCircleColor();
                 $(`[slide-show-id=${currentPhotoIndex}]`).addClass('active-circle');
-                $('#slideshow-photo').attr('src', `${slideShowPhotos[currentPhotoIndex].url}`)
+                $(slideShowPhotoEl).attr('src', `${slideShowPhotos[currentPhotoIndex].src}`);
+                $(slideShowPhotoEl).attr('alt', `${slideShowPhotos[currentPhotoIndex].alt}`);
                 // $('#slideshow-photo').toggleClass('ball-in').delay(2000).toggleClass('ball-out');
-                if (currentPhotoIndex >= 3) {
-                    currentPhotoIndex = 0;
-                } else {
-                    currentPhotoIndex++;
-                }
+                if (currentPhotoIndex === 3)currentPhotoIndex = 0;
+                else currentPhotoIndex++;
             }, 5000);
         };
-
 
 
         let switchLeftArrow = (element) => {
@@ -90,9 +99,17 @@
         };
 
         let resetLeftMenu = () => {
+            let leftMenuContainerEl = $('.left-menu-container');
+            if ($(leftMenuContainerEl).hasClass('left-menu-container-open')) $('.nav-links-left').fadeOut(1);
+            else $('.nav-links-left').fadeIn(1);
+            $(leftMenuContainerEl).toggleClass('left-menu-container-open left-menu-container-close');
             $('.nav-item-left').children('ul').slideUp();
         };
         let resetRightMenu = () => {
+            let rightMenuContainerEl = $('.right-menu-container');
+            if ($(rightMenuContainerEl).hasClass('right-menu-container-open')) $('.nav-links-right').fadeOut(1);
+            else $('.nav-links-right').fadeIn(1);
+            $(rightMenuContainerEl).toggleClass('right-menu-container-open right-menu-container-close');
             $('.nav-item-right').children('ul').slideUp();
         };
 
@@ -120,7 +137,7 @@
                 $(this).removeClass('active-circle');
             });
         };
-
+        /*-----Event Listeners-----*/
         $('.nav-item-left').children('h3').click(function () {
             $(this).next().slideToggle(200);
         });
@@ -129,48 +146,106 @@
         });
 
         $('.left-menu-header-container').click(function () {
-            let leftMenuContainerEl = $('.left-menu-container');
-            if ($(leftMenuContainerEl).hasClass('left-menu-container-open')) $('.nav-links-left').fadeOut(1);
-            else $('.nav-links-left').fadeIn(1);
-            $(leftMenuContainerEl).toggleClass('left-menu-container-open left-menu-container-close');
             resetLeftMenu();
             $('.left-arrow').each(function () {
                 switchLeftArrow(this);
             });
         });
+
         $('.right-menu-header-container').click(function () {
-            let rightMenuContainerEl = $('.right-menu-container');
-            if ($(rightMenuContainerEl).hasClass('right-menu-container-open')) $('.nav-links-right').fadeOut(1);
-            else $('.nav-links-right').fadeIn(1);
-            $(rightMenuContainerEl).toggleClass('right-menu-container-open right-menu-container-close');
             resetRightMenu();
             $('.right-arrow').each(function () {
                 switchRightArrow(this);
             });
         });
 
+        let getPhotoObj = (flag) => {
+            switch (flag) {
+                case 'family':
+                    return familyPhotos;
+                default:
+                    return false;
+            }
+        };
+
+        let createPhotoHTML = (photoObj) => {
+            let htmlString = "";
+            for (let i = 0; i < photoObj.length; i++) {
+                if (i === 0) {
+                    htmlString += `<i class="fas fa-circle modal-circle active-circle" modal-photo-id="${i}"></i>`
+                } else {
+                    htmlString += `<i class="fas fa-circle modal-circle" modal-photo-id="${i}"></i>`
+                }
+            }
+            $(modalPhotoContainerEl).html(htmlString);
+            modalCircleListener(photoObj);
+        };
+
+        let addBlur = () => {
+            $('.body-container, .left-menu-container, .right-menu-container').addClass('blurred');
+        };
+        let removeBlur = () => {
+            $('.body-container, .left-menu-container, .right-menu-container').removeClass('blurred');
+        };
+
+        let setModalPhoto = (photoObj) => {
+            $(modalPhotoEl).attr('src', `${photoObj[currentModalIndex].src}`);
+            $(modalPhotoEl).attr('alt', `${photoObj[currentModalIndex].alt}`);
+        };
+
+        let startModalShow = (photoObj) => {
+            addBlur();
+            setModalPhoto(photoObj);
+            currentModalIndex++;
+            modalShowId = setInterval(() => {
+                resetModalCircleColor();
+                $(`[modal-photo-id=${currentModalIndex}]`).addClass('active-circle');
+                setModalPhoto(photoObj);
+                // $('#slideshow-photo').toggleClass('ball-in').delay(2000).toggleClass('ball-out');
+                if (currentModalIndex === photoObj.length - 1) currentModalIndex = 0;
+                else currentModalIndex++;
+            }, 5000);
+        };
+
+        /*-----Displays the family photos when clicked-----*/
+        $('#family').click(function () {
+            $(modalContainerEl).fadeIn()
+            let photoObject = getPhotoObj($(this).attr('id'));
+            currentModalIndex = 0;
+            createPhotoHTML(photoObject);
+            startModalShow(photoObject);
+        });
+
+        /*-----Circle Select Event Listeners-----*/
         $('.body-circle').click(function () {
             resetBodyCircleColor();
             $(this).addClass('active-circle');
             currentPhotoIndex = getPhotoIndex($(this).attr('slide-show-id'));
-            $('#slideshow-photo').attr('src', `${slideShowPhotos[currentPhotoIndex].url}`);
+            $('#slideshow-photo').attr('src', `${slideShowPhotos[currentPhotoIndex].src}`);
         });
 
-        $('.modal-circle').click(function () {
-            resetModalCircleColor();
-            $(this).addClass('active-circle');
-            currentPhotoIndex = getPhotoIndex(this);
-            $(`[slide-show-id*=${currentPhotoIndex}]`).attr('src', `${slideShowPhotos[currentPhotoIndex].url}`);
-        });
+        let modalCircleListener = (photoObj) => {
+            $('.modal-circle').click(function () {
+                resetModalCircleColor();
+                $(this).addClass('active-circle');
+                currentModalIndex = getPhotoIndex($(this).attr('modal-photo-id'));
+                setModalPhoto(photoObj);
+            });
+        };
 
         $('.wrapper').click(function (e) {
-            if (e.target !== $('.modal-container')) {
-                $('.modal-container').fadeOut();
+            // console.log(typeof e.target);
+            // console.log($(e.target).hasClass('link-item'));
+            // console.log(e.target);
+            // console.log($('.link-item'));
+            if (e.target !== $(modalContainerEl) && !$(e.target).hasClass('link-item')) {
+                $(modalContainerEl).fadeOut();
+                clearInterval(modalShowId);
+                removeBlur();
             }
         });
 
-
-
+        $(modalContainerEl).hide();
         startSlideShow();
         typeHeaderMessage("Hi, my name is Hung. Welcome to my personal site. Please checkout my links to learn more about me! Currently this only looks good on mobile view :D!");
     });
