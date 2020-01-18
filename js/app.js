@@ -56,10 +56,10 @@
         let startSlideShow = () => {
             let slideShowId = setInterval(() => {
                 resetBodyCircleColor();
-                $(`[slide-show-id*=${currentPhotoIndex}]`).addClass('active-circle');
+                $(`[slide-show-id=${currentPhotoIndex}]`).addClass('active-circle');
                 $('#slideshow-photo').attr('src', `${slideShowPhotos[currentPhotoIndex].url}`)
                 // $('#slideshow-photo').toggleClass('ball-in').delay(2000).toggleClass('ball-out');
-                if (currentPhotoIndex === 2) {
+                if (currentPhotoIndex >= 3) {
                     currentPhotoIndex = 0;
                 } else {
                     currentPhotoIndex++;
@@ -149,15 +149,11 @@
             });
         });
 
-
-
         $('.body-circle').click(function () {
             resetBodyCircleColor();
             $(this).addClass('active-circle');
-            let id = $(this).attr('slide-show-id');
-            currentPhotoIndex = getPhotoIndex(id);
-            console.log(`${slideShowPhotos[currentPhotoIndex].url}`);
-            $(`[slide-show-id=${currentPhotoIndex}]`).attr('src', `${slideShowPhotos[currentPhotoIndex].url}`);
+            currentPhotoIndex = getPhotoIndex($(this).attr('slide-show-id'));
+            $('#slideshow-photo').attr('src', `${slideShowPhotos[currentPhotoIndex].url}`);
         });
 
         $('.modal-circle').click(function () {
