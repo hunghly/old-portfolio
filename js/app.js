@@ -38,12 +38,46 @@
                 src: './img/gaming.jpg'
             },
             {
+                alt: 'a photo of my mom and I',
+                src: './img/mom.jpg'
+            },
+            {
                 alt: 'a photo of us with ALS award',
                 src: './img/wife-award.jpg'
             },
             {
                 alt: 'a photo of us at the dinner table',
                 src: './img/family.jpg'
+            }
+        ];
+
+        let petPhotos = [
+            {
+                alt: 'a photo of a german shepherd and dalmatian',
+                src: './img/arya-astro.jpeg'
+            },
+            {
+                alt: 'a photo of a dalmatian and bengal cat',
+                src: './img/akella-astro.jpg'
+            },
+            {
+                alt: 'a photo of a black cat',
+                src: './img/aslan.jpeg'
+            }
+        ];
+
+        let goalsPhotos = [
+            {
+                alt: 'a photo of me in front of a shrine',
+                src: './img/posing-at-shrine.jpg'
+            },
+            {
+                alt: 'a photo of a person typing',
+                src: './img/cs.jpg'
+            },
+            {
+                alt: 'a photo of a black cat',
+                src: './img/codeup.jpeg'
             }
         ];
 
@@ -163,6 +197,8 @@
             switch (flag) {
                 case 'family':
                     return familyPhotos;
+                case 'pets':
+                    return petPhotos;
                 default:
                     return false;
             }
@@ -211,6 +247,18 @@
         $('#family').click(function () {
             $(modalContainerEl).fadeIn()
             let photoObject = getPhotoObj($(this).attr('id'));
+            currentModalIndex = 0;
+            createPhotoHTML(photoObject);
+            startModalShow(photoObject);
+        });
+
+        /*-----Displays the pets photos when clicked-----*/
+        $('#pets').click(function () {
+            $(modalContainerEl).fadeIn();
+            console.log($(this).attr('id'));
+            console.log(getPhotoObj($(this).attr('id')));
+            let photoObject = getPhotoObj($(this).attr('id'));
+            console.log(photoObject);
             currentModalIndex = 0;
             createPhotoHTML(photoObject);
             startModalShow(photoObject);
